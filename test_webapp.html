@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test WebApp</title>
+</head>
+<body>
+    <h1>Test WebApp for Telegram</h1>
+    <button id="sendDataBtn">Send Data to Telegram</button>
+    
+    <script>
+        // Проверка наличия WebApp SDK
+        if (window.Telegram && window.Telegram.WebApp) {
+            window.Telegram.WebApp.ready();  // Инициализация WebApp
+            window.Telegram.WebApp.MainButton.setText("Send Data");
+            window.Telegram.WebApp.MainButton.show();
+        } else {
+            alert("WebApp SDK not available.");
+            console.error("Telegram WebApp SDK not available.");
+        }
+
+        document.getElementById('sendDataBtn').addEventListener('click', function() {
+            // Пример данных для отправки
+            const data = [
+                { id: 1, name: "Death", flipped: false },
+                { id: 2, name: "Judgement", flipped: true }
+            ];
+
+            // Логирование перед отправкой данных
+            console.log("Sending data:", data);
+
+            // Отправка данных в Telegram WebApp
+            if (window.Telegram && window.Telegram.WebApp) {
+                window.Telegram.WebApp.sendData(JSON.stringify(data));  // Отправка данных
+                alert("Data sent to Telegram.");
+            } else {
+                console.error("Telegram WebApp SDK not available.");
+                alert("Error: SDK not available.");
+            }
+        });
+    </script>
+</body>
+</html>
