@@ -30,8 +30,8 @@
             // Логирование перед отправкой данных
             console.log("Sending data:", data);
 
-            // Отправка данных на сервер, а затем в Telegram
-            fetch('http://localhost:3000/sendData', {
+            // Отправка данных на сервер
+            fetch('https://testwebapp-ruddy.vercel.app/sendData', {  // Обновите URL на свой сервер
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(data)
