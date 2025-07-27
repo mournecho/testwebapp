@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test WebApp</title>
+    <title>Test WebApp for Telegram</title>
 </head>
 <body>
     <h1>Test WebApp for Telegram</h1>
@@ -29,6 +29,22 @@
 
             // Логирование перед отправкой данных
             console.log("Sending data:", data);
+
+            // Отправка данных на сервер, а затем в Telegram
+            fetch('http://localhost:3000/sendData', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.text())
+            .then(response => {
+                alert('Data sent successfully!');
+                console.log(response);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Error sending data!');
+            });
 
             // Отправка данных в Telegram WebApp
             if (window.Telegram && window.Telegram.WebApp) {
